@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  sender-01:
+    image: mail-sender
+    container_name: sender-node1
+    build:
+      context: setting
+    ports:
+      - "9011:80"
+    restart: on-failure
+    volumes:
+      - ./log:/usr/agitg/log
+    
+    environment:
+      DB_WRITE_IP: ${ip}
+      DB_WRITE_PORT: 3316
+      DB_READ_IP: ${ip}
+      DB_READ_PORT: 3316
+      DB_USER: root
+      DB_PASSWORD: 123456
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+    

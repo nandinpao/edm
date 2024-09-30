@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mailbox01:
+    image: mailbox
+    container_name: mailbox-node1
+    hostname: mailbox-node1
+    build:
+      context: setting
+    restart: on-failure
+    volumes:
+      - ./log:/usr/agitg/log
+
+    environment:
+      DB_WRITE_IP: ${ip}
+      DB_WRITE_PORT: 3316
+      DB_READ_IP: ${ip}
+      DB_READ_PORT: 3316
+      DB_USER: root
+      DB_PASSWORD: 123456
+      REDIS_HOST: ${ip}:7001,${ip}:7002,${ip}:7003,${ip}:7004,${ip}:7005,${ip}:7006
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+
+    ports:
+      - "9001:80"

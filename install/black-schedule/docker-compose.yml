@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  blackschedule-01:
+    image: blackschedule
+    container_name: blackschedule-node1
+    build:
+      context: setting
+    ports:
+      - "9950:80"
+    restart: on-failure
+    volumes:
+      - ./log:/usr/agitg/log
+
+    environment:
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+
+
+

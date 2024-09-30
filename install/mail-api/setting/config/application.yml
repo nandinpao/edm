@@ -1,0 +1,62 @@
+server:
+  max-http-request-header-size: 10MB
+  port : 9080
+  tomcat:
+    threads:
+      max: 1000
+  servlet:
+    context-path: /protocol
+
+spring:
+  application:
+    name: protocol
+  cloud:
+    consul:
+      host: ${CONSULE_HOST}
+      port: ${CONSULE_PORT}
+      discovery:
+        service-name: protocol
+        health-check-path: /actuator/health
+        heartbeat:
+          enabled: true
+  datasource:
+    writer: 
+      type: com.zaxxer.hikari.HikariDataSource
+      url: jdbc:mysql://${DB_WRITE_IP}:${DB_WRITE_PORT}/alliance?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true&allowPublicKeyRetrieval=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}
+      hikari:
+        connection-test-query: SELECT 1 FROM DUAL
+        idle-timeout: 10000
+        maximum-pool-size: 5
+        connection-timeout: 60000
+        pool-name: mailbox2
+        max-lifetime: 1800000
+    reader: 
+      type: com.zaxxer.hikari.HikariDataSource
+      url: jdbc:mysql://${DB_READ_IP}:${DB_READ_PORT}/alliance?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true&allowPublicKeyRetrieval=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}
+      hikari:
+        connection-test-query: SELECT 1 FROM DUAL
+        idle-timeout: 10000
+        maximum-pool-size: 5
+        connection-timeout: 60000
+        pool-name: mailbox2
+        max-lifetime: 1800000
+
+  servlet:
+    multipart:
+      location: /Users/nandin.pao/Documents/workspace/poshero/sender-report/upload_tmp
+      max-file-size: 10240KB
+      max-request-size: 10240KB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: always        

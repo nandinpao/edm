@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Agitg - Home</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="eDM郵件大量發送免費使用，最佳化寄件人，讓你更有效率發送大量郵件，讓行銷手中的利器更加進化">
+<meta name="author" content="AdminKit">
+
+<meta property="og:title" content="Agitg" />
+<meta property="og:description"
+	content="eDM郵件大量發送免費使用，最佳化寄件人，讓你更有效率發送大量郵件，讓行銷手中的利器更加進化" />
+<meta property="og:url" content="https://www.agitg.com/" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aigtg" />
+
+<meta name="theme-color" content="#7952b3">
+
+<link rel="shortcut icon" href="./img/icons/icon-48x48.ico" />
+<link href="./css/bootstrap5/bootstrap.css" rel="stylesheet">
+
+
+<div th:replace="common/head :: head"></div>
+</head>
+
+<style>
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+
+.caption h1 {
+	margin: 0;
+	font-size: 56px;
+	font-weight: 700;
+	line-height: 72px;
+	color: #124265;
+	font-family: "Poppins", sans-serif;
+}
+
+.caption h2 {
+	color: #5e5e5e;
+	margin: 10px 0 0 0;
+	font-size: 22px;
+}
+
+#loader {
+	border: 12px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 12px solid #444444;
+	width: 70px;
+	height: 70px;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 100% {
+	transform: rotate(360deg);
+}
+
+}
+.center {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+</style>
+
+<script type="text/javascript">
+	document.onreadystatechange = function() {
+		if (document.readyState !== "complete") {
+			document.querySelector("body").style.visibility = "hidden";
+			document.querySelector("#loader").style.visibility = "visible";
+		} else {
+			document.querySelector("#loader").style.display = "none";
+			document.querySelector("body").style.visibility = "visible";
+		}
+	};
+</script>
+
+<body class="bg-light">
+	<div id="loader" class="center"></div>
+	<div class="container py-3 ">
+		<header>
+			<div
+				class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+				<a href="/"
+					class="d-flex align-items-center text-dark text-decoration-none">
+					<span class="fs-4">Agitg</span>
+				</a>
+
+				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+					<a class="py-2 text-dark text-decoration-none" href=".">首頁</a>
+				</nav>
+			</div>
+
+			<div class="pricing-header p-3 pb-md-4 mx-auto text-center"></div>
+		</header>
+
+		<main>
+
+			<div id="pageInfo">
+				<div class="py-5 text-center caption">
+					<h1>EDM 購買</h1>
+					<h2>更完美的功能、更好的服務和更有力的行銷數據決策分析，這就是我們追求的目標</h2>
+
+				</div>
+
+				<h4 class="mb-3">購買發送量(必填)</h4>
+				<div class="row">
+					<div class="col-md-7 col-lg-12 px-3">
+						<label class="form-label" for="customRange1"></label>
+						<div class="range">
+							<input type="range" id="range" class="form-range" min="1000"
+								max="1000000" value="1000" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 px-3">
+						<label for="number" class="form-label"></label>
+						<div class="input-group has-validation">
+							<span class="input-group-text">數量</span> <input type="number"
+								class="form-control" id="number" placeholder="1500" value="1500"
+								required>
+							<div class="invalid-feedback">數量必填</div>
+						</div>
+					</div>
+
+					<div class="col-lg-6 px-3">
+						<label for="amount" class="form-label"></label>
+						<div class="input-group has-validation">
+							<span class="input-group-text">金額</span> <input type="number"
+								class="form-control" id="price" placeholder="120" value="120"
+								required>
+							<div class="invalid-feedback">數值必填</div>
+						</div>
+					</div>
+				</div>
+
+				<hr class="my-4">
+
+				<div class="row">
+					<div class="col-lg-12 px-3" id="personalInfo">
+						<div class="row g-3">
+							<div class="col-sm-4">
+								<label for="lastName" class="form-label">姓(必填-與轉出銀行姓名相同)</label> <input
+									type="text" class="form-control" id="lastName"
+									placeholder="例如：王" required>
+								<div class="invalid-feedback">姓氏必填</div>
+							</div>
+
+							<div class="col-sm-4">
+								<label for="firstName" class="form-label">名字(必填-與轉出銀行姓名相同)</label> <input
+									type="text" class="form-control" id="firstName"
+									placeholder="例如：大明"  required>
+								<div class="invalid-feedback">名字必填</div>
+							</div>
+
+							<div class="col-sm-4">
+								<label for="mobile" class="form-label">手機號碼(必填)</label>
+								<div class="input-group has-validation">
+									<span class="input-group-text">@</span> <input type="text"
+										 class="form-control" id="mobile"
+										placeholder="0912-356-939" required>
+									<div class="invalid-feedback">手機必填</div>
+								</div>
+							</div>
+
+							<div class="col-sm-4">
+								<label for="bankNo" class="form-label">銀行代碼(必填)</label>
+								<div class="input-group has-validation">
+									<span class="input-group-text">銀行</span> <input type="number"
+										 class="form-control" id="bankNo" maxlength="5"
+										placeholder="700" required>
+									<div class="invalid-feedback">銀行卡後5碼必填</div>
+								</div>
+							</div>
+
+							<div class="col-sm-4">
+								<label for="branchNo" class="form-label">銀行分行(必填)</label>
+								<div class="input-group has-validation">
+									<span class="input-group-text">分行</span> <input type="number"
+										 class="form-control" id="branchNo" maxlength="5"
+										placeholder="0705" required>
+									<div class="invalid-feedback">分行必填</div>
+								</div>
+							</div>
+
+							<div class="col-sm-4">
+								<label for="card5No" class="form-label">銀行卡後5碼(必填)</label>
+								<div class="input-group has-validation">
+									<span class="input-group-text">卡號</span> <input type="number"
+										class="form-control" id="card5No" maxlength="5"
+										placeholder="12345" required>
+									<div class="invalid-feedback">銀行卡後5碼必填</div>
+								</div>
+							</div>
+
+						</div>
+						<hr class="my-4">
+						<div class="row g-3">
+							<div class="col-sm-4">
+								<label for="companyNo" class="form-label">公司統編(非必填)</label> <input
+									type="number" class="form-control" id="companyNo"
+									placeholder="12345678">
+								<div class="invalid-feedback"></div>
+							</div>
+
+							<div class="col-sm-8">
+								<label for="address" class="form-label">地址(非必填)</label> <input
+									type="text" class="form-control" id="address"
+									placeholder="例如：台北市凱達格蘭大道">
+								<div class="invalid-feedback"></div>
+							</div>
+						</div>
+
+						<hr class="my-4">
+
+						<div class="row justify-content-end">
+							<div class="col-md-auto px-3">
+								<button class="btn btn-primary btn-lg" id="send">購買</button>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+			<div id="bankInfo" class="visually-hidden">
+				<div class="py-5 text-center caption">
+					<div class="col-lg-12 px-3 ">
+						<div class="py-5 text-center caption">
+							<h1>ATM 轉入帳號</h1>
+							<h2>更好的服務，來自感謝您的購買，讓我們一起共創美好的未來</h2>
+						</div>
+					</div>
+					<hr class="my-4">
+					<div class="row g-3">
+						<div class="col-sm-12">
+							<label for="cname" class="form-label">戶名</label>
+							<div class="input-group has-validation">
+								<input type="text" value="富梁有限公司" class="form-control"
+									id="cname" placeholder="富梁有限公司" readonly>
+							</div>
+						</div>
+						
+						<div class="col-sm-4">
+							<label for="cbankno" class="form-label">銀行代碼-聯邦銀行</label> <input
+								type="number" class="form-control" id="cbankno"
+								placeholder="803" value="803" readonly>
+						</div>
+
+						<div class="col-sm-4">
+							<label for="cbranchkNo" class="form-label">分行代碼</label> <input
+								type="number" class="form-control" id="cbranchkNo"
+								placeholder="0054" value="0054" readonly>
+						</div>
+
+						<div class="col-sm-4">
+							<label for="bankNo" class="form-label">帳號</label>
+							<div class="input-group has-validation">
+								<input type="text" value="005108003917" class="form-control"
+									id="account" placeholder="005-10800-3917" readonly>
+							</div>
+						</div>
+						
+					</div>
+					<hr class="my-4">
+
+					<div class="row justify-content-end">
+						<div class="col-md-auto px-3">
+							<button class="btn btn-primary btn-lg" id="orderBack">回訂單頁面</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+
+	<footer class="pt-4 my-md-5 pt-md-5 border-top mb-4">
+		<div class="row">
+			<div class="col-6 px-4">
+				<h5>服務</h5>
+				<ul class="list-unstyled text-small">
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="./">Home</a></li>
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="./mymail">My Mail</a></li>
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="#">EDM</a></li>
+				</ul>
+			</div>
+			<div class="col-6 px-4">
+				<h5>條款</h5>
+				<ul class="list-unstyled text-small">
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="./rule">服務條款</a></li>
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="./privacy">隱私權</a></li>
+				</ul>
+			</div>
+
+			<div class="col-12 col-md px-4">
+				<small class="d-block mb-3 text-muted">© Copyright Agitg. All Rights Reserved</small>
+			</div>
+
+		</div>
+	</footer>
+
+
+	<div th:replace="common/javascript :: javascript"></div>
+	<script src="./js/bootstrap5/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+
+
+	<script src="./js/plugin/pay.js"></script>
+
+</body>
+
+</html>

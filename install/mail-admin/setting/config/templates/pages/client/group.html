@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title th:text="${name}">Agitg</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="eDM郵件大量發送免費使用，最佳化寄件人，讓你更有效率發送大量郵件，讓行銷手中的利器更加進化">
+<meta name="author" content="AdminKit">
+
+<meta property="og:title" content="Agitg" />
+<meta property="og:description"
+	content="eDM郵件大量發送免費使用，最佳化寄件人，讓你更有效率發送大量郵件，讓行銷手中的利器更加進化" />
+<meta property="og:url" content="https://www.agitg.com/" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aigtg" />
+
+<meta name="theme-color" content="#7952b3">
+
+<link rel="shortcut icon" href="./img/icons/icon-48x48.ico" />
+<link href="../css/bootstrap5/bootstrap.css" rel="stylesheet">
+
+
+<div th:replace="common/google :: google"></div>
+</head>
+
+<style>
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+
+.caption h1 {
+	margin: 0;
+	font-size: 56px;
+	font-weight: 700;
+	line-height: 72px;
+	color: #124265;
+	font-family: "Poppins", sans-serif;
+}
+
+.caption h2 {
+	color: #5e5e5e;
+	margin: 10px 0 0 0;
+	font-size: 22px;
+}
+
+#loader {
+	border: 12px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 12px solid #444444;
+	width: 70px;
+	height: 70px;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 100% {
+	transform: rotate(360deg);
+}
+
+}
+.center {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+</style>
+
+<script type="text/javascript">
+	document.onreadystatechange = function() {
+		if (document.readyState !== "complete") {
+			document.querySelector("body").style.visibility = "hidden";
+			document.querySelector("#loader").style.visibility = "visible";
+		} else {
+			document.querySelector("#loader").style.display = "none";
+			document.querySelector("body").style.visibility = "visible";
+		}
+	};
+</script>
+
+<body class="bg-light">
+	<div id="loader" class="center"></div>
+	<div class="container py-3 ">
+		<header>
+			<div
+				class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+				<a href="/"
+					class="d-flex align-items-center text-dark text-decoration-none">
+					<span class="fs-4">Agitg</span>
+				</a>
+
+				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+					<a class="py-2 text-dark text-decoration-none" href=".">Home</a>
+				</nav>
+			</div>
+
+			<div class="pricing-header p-3 pb-md-4 mx-auto text-center"></div>
+		</header>
+
+		<main>
+			<div id="pageInfo">
+				<div class="py-5 text-center caption">
+					<h1>
+						<span th:text="${info.name}"></span>
+					</h1>
+					<h2>
+						<span th:text="*{info.description}"></span>
+					</h2>
+
+				</div>
+
+				<div class="row justify-content-center">
+					<div class="py-5 text-center caption col-sm-3">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title mb-4">加入人數</h5>
+								<h1 class="mt-1 mb-3" th:text="*{info.total}"></h1>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<hr class="my-4">
+				<div class="row">
+					<div class="col-lg-12 px-3" id="subscriberInfo">
+						<div class="row my-3">
+
+							<div class="col-sm-12">
+								<label for="name" class="form-label">名稱(必填)</label> <input
+									type="text" class="form-control" id="name" placeholder="例如：王大明"
+									required>
+								<div class="invalid-feedback">名稱必填</div>
+							</div>
+						</div>
+
+						<div class="row my-3">
+							<div class="col-sm-6">
+								<label for="mobile" class="form-label">Email (Required)</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text">@</span> <input type="text"
+                                        class="form-control" id="email" placeholder="demo@gmail.com"
+                                        required>
+                                    <div class="invalid-feedback">Email is required</div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-3">
+                                <label for="mobile" class="form-label">Mobile Phone</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text">@</span> <input type="number"
+                                        class="form-control" id="mobile" placeholder="0978110221"
+                                        required>
+                                    <div class="invalid-feedback">Mobile phone is required</div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label for="bankNo" class="form-label">Gender (Required)</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text">Gender</span> <select id="gender"
+                                        class="form-select" aria-label="Default select example">
+                                        <option value="0" selected>Select Gender</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select>
+                                    <div class="invalid-feedback">Gender is required</div>
+								</div>
+							</div>
+						</div>
+						<br />
+						<hr class="my-4">
+
+						<div class="row justify-content-end">
+							<div class="col-md-auto px-3">
+								<button class="btn btn-primary btn-lg" id="send">Subscriber</button>
+							</div>
+						</div>
+					</div>
+
+					<div id="welcomeInfo" class="visually-hidden">
+						<div class="py-5 text-center caption">
+							<div class="col-lg-12 px-3 ">
+								<div class="py-5 text-center caption">
+									<h2>
+                                        <span>Subscription Successful</span>
+                                    </h2>
+                                    <h3>Looking forward to seeing you soon</h3>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</main>
+	</div>
+
+	<footer class="pt-4 my-md-5 pt-md-5 border-top mb-4">
+		<div class="row">
+			<div class="col-6 px-4">
+				<h5>Services</h5>
+				<ul class="list-unstyled text-small">
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="./">Home</a></li>
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="./mymail">My Mail</a></li>
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="#">EDM</a></li>
+				</ul>
+			</div>
+			<div class="col-6 px-4">
+				<h5>Policy</h5>
+				<ul class="list-unstyled text-small">
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="./rule">Policy</a></li>
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="./privacy">Privacy</a></li>
+				</ul>
+			</div>
+
+			<div class="col-12 col-md px-4">
+				<small class="d-block mb-3 text-muted">© Copyright Agitg.
+					All Rights Reserved</small>
+			</div>
+			<input type="hidden" id="group" th:field="*{info.id}">
+		</div>
+	</footer>
+
+	<script src="../js/jquery/jquery-3.6.0.min.js" type="text/javascript"></script>
+	<script src="../js/jquery/loading/loadingoverlay.min.js" type="text/javascript"></script>
+	<script src="../js/utils.js"></script>
+	<script src="../js/plugin/subscriber.js"></script>
+	<script src="../js/bootstrap5/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

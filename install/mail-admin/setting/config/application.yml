@@ -1,0 +1,57 @@
+server:
+  max-http-request-header-size: 10MB
+  port: 9070
+  http2:
+    enabled: true
+  servlet:
+    session:
+      timeout: 24h
+    context-path: /
+
+spring:
+  application:
+    name: Agitg-Mail-Center
+  main:
+    lazy-initialization: true
+  cloud:
+    consul:
+      host: ${CONSULE_HOST}
+      port: ${CONSULE_PORT}
+      discovery:
+        service-name: mail-center
+        register: true
+        health-check-path: /actuator/health
+        heartbeat:
+          enabled: true
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  servlet:
+    multipart:
+      max-file-size: 10240KB
+      max-request-size: 10240KB
+  http:
+    multipart:
+      location: /Users/nandin.pao/Documents/workspace/poshero/mail-center/upload_tmp
+      max-file-size: 10MB
+      max-request-size: 11MB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: always
+
+feign:
+  client:
+    config:
+      feignName:
+        connectTimeout: 5000
+        readTimeout: 5000
+
+config:
+    gateway: 
+      file: /config/config/gateway.json

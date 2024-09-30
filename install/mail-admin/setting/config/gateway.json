@@ -1,0 +1,11 @@
+{
+    "login": {
+        "url": "/login"
+    },
+    "home": {
+        "url": "/home"
+    },
+    "mymail": {
+        "url": "/mymail"
+    }
+}

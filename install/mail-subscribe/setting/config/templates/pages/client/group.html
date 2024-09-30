@@ -1,0 +1,411 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title th:text="${name}">Agitg</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="eDM郵件大量發送免費使用，最佳化寄件人，讓你更有效率發送大量郵件，讓行銷手中的利器更加進化">
+<meta name="author" content="AdminKit">
+
+<meta property="og:title" content="Agitg" />
+<meta property="og:description"
+	content="eDM郵件大量發送免費使用，最佳化寄件人，讓你更有效率發送大量郵件，讓行銷手中的利器更加進化" />
+<meta property="og:url" content="https://www.agitg.com/" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aigtg" />
+
+<meta name="theme-color" content="#7952b3">
+
+<link rel="shortcut icon" href="./img/icons/icon-48x48.ico" />
+<link href="../css/bootstrap5/bootstrap.css" rel="stylesheet">
+
+
+<div th:replace="common/google :: google"></div>
+</head>
+
+<style>
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+
+.caption h1 {
+	margin: 0;
+	font-size: 56px;
+	font-weight: 700;
+	line-height: 72px;
+	color: #124265;
+	font-family: "Poppins", sans-serif;
+}
+
+.caption h2 {
+	color: #5e5e5e;
+	margin: 10px 0 0 0;
+	font-size: 22px;
+}
+
+#loader {
+	border: 12px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 12px solid #444444;
+	width: 70px;
+	height: 70px;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 100% {
+	transform: rotate(360deg);
+}
+
+}
+.center {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+</style>
+
+<script type="text/javascript">
+	document.onreadystatechange = function() {
+		if (document.readyState !== "complete") {
+			document.querySelector("body").style.visibility = "hidden";
+			document.querySelector("#loader").style.visibility = "visible";
+		} else {
+			document.querySelector("#loader").style.display = "none";
+			document.querySelector("body").style.visibility = "visible";
+		}
+	};
+</script>
+
+<body class="bg-light">
+	<div id="loader" class="center"></div>
+	<div class="container py-3 ">
+		<header>
+			<div
+				class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+				<a href="/"
+					class="d-flex align-items-center text-dark text-decoration-none">
+					<span class="fs-4">Agitg</span>
+				</a>
+
+				<nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+					<a class="py-2 text-dark text-decoration-none" href=".">首頁</a>
+				</nav>
+			</div>
+
+			<div class="pricing-header p-3 pb-md-4 mx-auto text-center"></div>
+		</header>
+
+		<main>
+			<div id="pageInfo">
+				<div class="py-5 text-center caption">
+					<h1>
+						<span th:text="${info.name}"></span>
+					</h1>
+					<h2>
+						<span th:text="*{info.description}"></span>
+					</h2>
+
+				</div>
+
+				<div class="row justify-content-center">
+					<div class="py-5 text-center caption col-sm-3">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title mb-4">加入人數</h5>
+								<h1 class="mt-1 mb-3" th:text="*{info.total}"></h1>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<hr class="my-4">
+				<div class="row">
+					<div class="col-lg-12 px-3" id="subscriberInfo">
+						<div class="row my-3">
+
+							<div class="col-sm-12">
+								<label for="name" class="form-label">名稱(必填)</label> <input
+									type="text" class="form-control" id="name" placeholder="例如：王大明"
+									required>
+								<div class="invalid-feedback">名稱必填</div>
+							</div>
+						</div>
+
+						<div class="row my-3">
+							<div class="col-sm-6">
+								<label for="mobile" class="form-label">信箱(必填)</label>
+								<div class="input-group has-validation">
+									<span class="input-group-text">@</span> <input type="text"
+										class="form-control" id="email" placeholder="demo@gmail.com"
+										required>
+									<div class="invalid-feedback">信箱必填</div>
+								</div>
+							</div>
+
+							<div class="col-sm-3">
+								<label for="mobile" class="form-label">行動電話</label>
+								<div class="input-group has-validation">
+									<span class="input-group-text">@</span> 
+									<input type="number"
+										class="form-control" id="mobile" placeholder="0978110221"
+										required>
+									<div class="invalid-feedback">行動電話必填</div>
+								</div>
+							</div>
+
+							<div class="col-sm-3">
+								<label for="bankNo" class="form-label">性別(必填)</label>
+								<div class="input-group has-validation">
+									<span class="input-group-text">性別</span> <select id="gender"
+										class="form-select" aria-label="Default select example">
+										<option value="0" selected>選擇性別</option>
+										<option value="1">男</option>
+										<option value="2">女</option>
+									</select>
+									<div class="invalid-feedback">性別必填</div>
+								</div>
+							</div>
+
+							<div class="col-sm-6">
+								<label for="birth" class="form-label mt-3">生日</label>
+								<div class="input-group has-validation">
+									<div class="input-group mb-3">
+									<span class="input-group-text">生日</span><select id="select_birth_year" class="form-control form-select form-select-lg"
+										aria-label=".form-select-lg"><option value="1940">1940
+											年</option>
+										<option value="1941">1941 年</option>
+										<option value="1942">1942 年</option>
+										<option value="1943">1943 年</option>
+										<option value="1944">1944 年</option>
+										<option value="1945">1945 年</option>
+										<option value="1946">1946 年</option>
+										<option value="1947">1947 年</option>
+										<option value="1948">1948 年</option>
+										<option value="1949">1949 年</option>
+										<option value="1950">1950 年</option>
+										<option value="1951">1951 年</option>
+										<option value="1952">1952 年</option>
+										<option value="1953">1953 年</option>
+										<option value="1954">1954 年</option>
+										<option value="1955">1955 年</option>
+										<option value="1956">1956 年</option>
+										<option value="1957">1957 年</option>
+										<option value="1958">1958 年</option>
+										<option value="1959">1959 年</option>
+										<option value="1960">1960 年</option>
+										<option value="1961">1961 年</option>
+										<option value="1962">1962 年</option>
+										<option value="1963">1963 年</option>
+										<option value="1964">1964 年</option>
+										<option value="1965">1965 年</option>
+										<option value="1966">1966 年</option>
+										<option value="1967">1967 年</option>
+										<option value="1968">1968 年</option>
+										<option value="1969">1969 年</option>
+										<option value="1970">1970 年</option>
+										<option value="1971">1971 年</option>
+										<option value="1972">1972 年</option>
+										<option value="1973">1973 年</option>
+										<option value="1974">1974 年</option>
+										<option value="1975">1975 年</option>
+										<option value="1976">1976 年</option>
+										<option value="1977">1977 年</option>
+										<option value="1978">1978 年</option>
+										<option value="1979">1979 年</option>
+										<option value="1980"  selected="selected">1980 年</option>
+										<option value="1981">1981 年</option>
+										<option value="1982">1982 年</option>
+										<option value="1983">1983 年</option>
+										<option value="1984">1984 年</option>
+										<option value="1985">1985 年</option>
+										<option value="1986">1986 年</option>
+										<option value="1987">1987 年</option>
+										<option value="1988">1988 年</option>
+										<option value="1989">1989 年</option>
+										<option value="1990">1990 年</option>
+										<option value="1991">1991 年</option>
+										<option value="1992">1992 年</option>
+										<option value="1993">1993 年</option>
+										<option value="1994">1994 年</option>
+										<option value="1995">1995 年</option>
+										<option value="1996">1996 年</option>
+										<option value="1997">1997 年</option>
+										<option value="1998">1998 年</option>
+										<option value="1999">1999 年</option>
+										<option value="2000">2000 年</option>
+										<option value="2001">2001 年</option>
+										<option value="2002">2002 年</option>
+										<option value="2003">2003 年</option>
+										<option value="2004">2004 年</option>
+										<option value="2005">2005 年</option>
+										<option value="2006">2006 年</option>
+										<option value="2007">2007 年</option>
+										<option value="2008">2008 年</option>
+										<option value="2009">2009 年</option>
+										<option value="2010">2010 年</option>
+										<option value="2011">2011 年</option>
+										<option value="2012">2012 年</option>
+										<option value="2013">2013 年</option>
+										<option value="2014">2014 年</option>
+										<option value="2015">2015 年</option>
+										<option value="2016">2016 年</option>
+										<option value="2017">2017 年</option>
+										<option value="2018">2018 年</option>
+										<option value="2019">2019 年</option>
+										<option value="2020">2020 年</option>
+										<option value="2021">2021 年</option></select><select id="select_birth_month"
+										class="form-control form-select form-select-lg"
+										aria-label=".form-select-lg"><option value="1">1
+											月</option>
+										<option value="2">2 月</option>
+										<option value="3" selected="selected">3 月</option>
+										<option value="4">4 月</option>
+										<option value="5">5 月</option>
+										<option value="6">6 月</option>
+										<option value="7" selected="selected">7 月</option>
+										<option value="8">8 月</option>
+										<option value="9">9 月</option>
+										<option value="10">10 月</option>
+										<option value="11">11 月</option>
+										<option value="12">12 月</option></select><select id="select_birth_date"
+										class="form-control form-select form-select-lg"
+										aria-label=".form-select-lg"><option value="1">1
+											日</option>
+										<option value="2">2 日</option>
+										<option value="3">3 日</option>
+										<option value="4">4 日</option>
+										<option value="5">5 日</option>
+										<option value="6">6 日</option>
+										<option value="7">7 日</option>
+										<option value="8">8 日</option>
+										<option value="9">9 日</option>
+										<option value="10">10 日</option>
+										<option value="11">11 日</option>
+										<option value="12">12 日</option>
+										<option value="13">13 日</option>
+										<option value="14">14 日</option>
+										<option value="15" selected="selected">15 日</option>
+										<option value="16">16 日</option>
+										<option value="17">17 日</option>
+										<option value="18" >18 日</option>
+										<option value="19">19 日</option>
+										<option value="20">20 日</option>
+										<option value="21">21 日</option>
+										<option value="22">22 日</option>
+										<option value="23">23 日</option>
+										<option value="24">24 日</option>
+										<option value="25">25 日</option>
+										<option value="26">26 日</option>
+										<option value="27">27 日</option>
+										<option value="28">28 日</option>
+										<option value="29">29 日</option>
+										<option value="30">30 日</option></select>
+								</div>
+									<div class="invalid-feedback">性別必填</div>
+								</div>
+							</div>
+							
+						</div>
+						<br />
+						<hr class="my-4">
+
+						<div class="row justify-content-end">
+							<div class="col-md-auto px-3">
+								<button class="btn btn-primary btn-lg" id="send">訂閱</button>
+							</div>
+						</div>
+					</div>
+
+					<div id="welcomeInfo" class="visually-hidden">
+						<div class="py-5 text-center caption">
+							<div class="col-lg-12 px-3 ">
+								<div class="py-5 text-center caption">
+									<h2>
+										<span>訂閱成功</span>
+									</h2>
+									<h3>期待與您相見的時刻</h3>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</main>
+	</div>
+
+	<footer class="pt-4 my-md-5 pt-md-5 border-top mb-4">
+		<div class="row">
+			<div class="col-6 px-4">
+				<h5>Services</h5>
+				<ul class="list-unstyled text-small">
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="./">Home</a></li>
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="./mymail">My Mail</a></li>
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="#">EDM</a></li>
+				</ul>
+			</div>
+			<div class="col-6 px-4">
+				<h5>Policy</h5>
+				<ul class="list-unstyled text-small">
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="./rule">Policy</a></li>
+					<li class="mb-1"><a
+						class="link-secondary text-decoration-none" href="./privacy">Privacy</a></li>
+				</ul>
+			</div>
+
+			<div class="col-12 col-md px-4">
+				<small class="d-block mb-3 text-muted">© Copyright Agitg.
+					All Rights Reserved</small>
+			</div>
+			<input type="hidden" id="group" th:field="*{info.id}">
+		</div>
+	</footer>
+
+
+	<script async
+		src="https://www.googletagmanager.com/gtag/js?id=G-PBZX4ZJJBK"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'G-PBZX4ZJJBK');
+	</script>
+
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P22F4RH"
+			height="0" width="0" style="display: none; visibility: hidden;"></iframe>
+	</noscript>
+
+	<script src="../js/jquery/jquery-3.6.0.min.js" type="text/javascript"></script>
+	<script src="../js/jquery/loading/loadingoverlay.min.js"
+		type="text/javascript"></script>
+	<script src="../js/utils.js"></script>
+	<script src="../js/mymenu.js"></script>
+	<script src="../js/plugin/subscriber.js"></script>
+	<script src="../js/bootstrap5/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

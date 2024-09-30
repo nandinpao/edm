@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Agitg - Home</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta name="description"
+	content="eDM郵件大量發送免費使用，最佳化寄件人，讓你更有效率發送大量郵件，讓行銷手中的利器更加進化">
+<meta name="author" content="AdminKit">
+
+<meta property="og:title" content="Agitg" />
+<meta property="og:description" content="eDM郵件大量發送免費使用，最佳化寄件人，讓你更有效率發送大量郵件，讓行銷手中的利器更加進化" />
+<meta property="og:url" content="https://www.agitg.com/" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aigtg" />
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+
+<link href="css/app.css" rel="stylesheet">
+<link rel="shortcut icon" href="./img/icons/icon-48x48.ico" />
+<link href="./vendor/font-awesome/css/all.min.css" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+	rel="stylesheet">
+<div th:replace="common/head :: head"></div>
+</head>
+
+
+<body>
+<div th:replace="common/javascript :: javascript"></div>
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="index.html"> <span
+					class="align-middle">Agitg Admin</span>
+				</a> 
+				
+				<div th:replace="common/menu :: menu"> </div>
+
+			</div>
+		</nav>
+
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+				<a class="sidebar-toggle d-flex"> <i
+					class="hamburger align-self-center"></i>
+				</a>
+
+				<form class="d-none d-sm-inline-block">
+					<div class="input-group input-group-navbar">
+						<input type="text" class="form-control" placeholder="Search…"
+							aria-label="Search">
+						<button class="btn" type="button">
+							<i class="align-middle" data-feather="search"></i>
+						</button>
+					</div>
+				</form>
+
+				<div class="navbar-collapse collapse">
+					<div th:replace="common/header :: header"> </div>
+				</div>
+			</nav>
+
+			<main class="content">
+				<div class="container-fluid p-0">
+
+					<div class="row mb-2 mb-xl-3">
+						<div class="col-auto d-none d-sm-block">
+							<h3>Dashboard</h3>
+						</div>
+
+						<div class="col-auto ms-auto text-end mt-n1">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
+									<li class="breadcrumb-item"><a href="#">Agitg</a></li>
+									<li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Analytics</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-6 col-xxl-5 d-flex">
+							<div class="w-100">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="card">
+											<div class="card-body">
+												<h5 class="card-title mb-4">Sales</h5>
+												<h1 class="mt-1 mb-3">2.382</h1>
+												<div class="mb-1">
+													<span class="text-danger"> <i
+														class="mdi mdi-arrow-bottom-right"></i> -3.65%
+													</span> <span class="text-muted">Since last week</span>
+												</div>
+											</div>
+										</div>
+										<div class="card">
+											<div class="card-body">
+												<h5 class="card-title mb-4">Visitors</h5>
+												<h1 class="mt-1 mb-3">14.212</h1>
+												<div class="mb-1">
+													<span class="text-success"> <i
+														class="mdi mdi-arrow-bottom-right"></i> 5.25%
+													</span> <span class="text-muted">Since last week</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="card">
+											<div class="card-body">
+												<h5 class="card-title mb-4">Earnings</h5>
+												<h1 class="mt-1 mb-3">$21.300</h1>
+												<div class="mb-1">
+													<span class="text-success"> <i
+														class="mdi mdi-arrow-bottom-right"></i> 6.65%
+													</span> <span class="text-muted">Since last week</span>
+												</div>
+											</div>
+										</div>
+										<div class="card">
+											<div class="card-body">
+												<h5 class="card-title mb-4">Orders</h5>
+												<h1 class="mt-1 mb-3">64</h1>
+												<div class="mb-1">
+													<span class="text-danger"> <i
+														class="mdi mdi-arrow-bottom-right"></i> -2.25%
+													</span> <span class="text-muted">Since last week</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xl-6 col-xxl-7">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Recent Movement</h5>
+								</div>
+								<div class="card-body py-3">
+									<div class="chart chart-sm">
+										<canvas id="chartjs-dashboard-line"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row"></div>
+
+
+				</div>
+			</main>
+
+			<div th:replace="common/footer :: footer"> </div>
+
+		</div>
+	</div>
+
+	<script src="js/app.js"></script>
+	<script src="./js/jquery/jquery-3.6.0.min.js"></script>
+	<script src="./js/utils.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			utils.menuSelected();
+		});
+	</script>
+	
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var ctx = document.getElementById("chartjs-dashboard-line")
+					.getContext("2d");
+			var gradient = ctx.createLinearGradient(0, 0, 0, 225);
+			gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
+			gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
+			// Line chart
+			new Chart(document.getElementById("chartjs-dashboard-line"), {
+				type : "line",
+				data : {
+					labels : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+							"Aug", "Sep", "Oct", "Nov", "Dec"],
+					datasets : [{
+						label : "Sales ($)",
+						fill : true,
+						backgroundColor : gradient,
+						borderColor : window.theme.primary,
+						data : [2115, 1562, 1584, 1892, 1587, 1923, 2566, 2448,
+								2805, 3438, 2917, 3327]
+					}]
+				},
+				options : {
+					maintainAspectRatio : false,
+					legend : {
+						display : false
+					},
+					tooltips : {
+						intersect : false
+					},
+					hover : {
+						intersect : true
+					},
+					plugins : {
+						filler : {
+							propagate : false
+						}
+					},
+					scales : {
+						xAxes : [{
+							reverse : true,
+							gridLines : {
+								color : "rgba(0,0,0,0.0)"
+							}
+						}],
+						yAxes : [{
+							ticks : {
+								stepSize : 1000
+							},
+							display : true,
+							borderDash : [3, 3],
+							gridLines : {
+								color : "rgba(0,0,0,0.0)"
+							}
+						}]
+					}
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>

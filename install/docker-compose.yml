@@ -1,0 +1,234 @@
+name: agitg
+
+services:
+  oauth:
+    image: oauth
+    container_name: oauth-node1
+    build:
+      context: oauth/setting
+    restart: on-failure
+    volumes:
+      - ./log/oauth:/usr/agitg/log
+    ports:
+      - "9010:80"
+    environment:
+      DB_WRITE_IP: ${ip}
+      DB_WRITE_PORT: 3316
+      DB_READ_IP: ${ip}
+      DB_READ_PORT: 3316
+      DB_USER: root
+      DB_PASSWORD: 123456
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+    command: java -jar -Xms128m -Xmx1024m -Dserver.port=80 -Dspring.config.location=/config/application.yml -Dlogging.config=/config/logback.xml app.jar
+
+  mailbox:
+    image: mailbox
+    container_name: mailbox-node1
+    hostname: mailbox-node1
+    build:
+      context: mailbox/setting
+    restart: on-failure
+    volumes:
+      - ./log/mailbox:/usr/agitg/log
+    environment:
+      DB_WRITE_IP: ${ip}
+      DB_WRITE_PORT: 3316
+      DB_READ_IP: ${ip}
+      DB_READ_PORT: 3316
+      DB_USER: root
+      DB_PASSWORD: 123456
+      REDIS_HOST: ${ip}:7001,${ip}:7002,${ip}:7003,${ip}:7004,${ip}:7005,${ip}:7006
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+    ports:
+      - "9020:80"
+    depends_on: 
+      - oauth
+    command: java -jar -Xms256m -Xmx2048m -Dserver.port=80 -Dspring.config.location=/config/application.yml -Dlogging.config=/config/logback.xml app.jar
+
+  sender:
+    image: mail-sender
+    container_name: sender-node1
+    build:
+      context: mail-sender/setting
+    ports:
+      - "9030:80"
+    restart: on-failure
+    volumes:
+      - ./log/mail-sender:/usr/agitg/log
+    
+    environment:
+      DB_WRITE_IP: ${ip}
+      DB_WRITE_PORT: 3316
+      DB_READ_IP: ${ip}
+      DB_READ_PORT: 3316
+      DB_USER: root
+      DB_PASSWORD: 123456
+      REDIS_HOST: ${ip}:7001,${ip}:7002,${ip}:7003,${ip}:7004,${ip}:7005,${ip}:7006
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+    depends_on: 
+      - mailbox
+    command: java -jar -Xms128m -Xmx1620m -Dserver.port=80 -Dspring.config.location=/config/application.yml -Dlogging.config=/config/logback.xml app.jar
+
+  blackschedule:
+    image: black-schedule
+    container_name: blackschedule-node1
+    build:
+      context: black-schedule/setting
+    ports:
+      - "9040:80"
+    restart: on-failure
+    volumes:
+      - ./log/black-schedule:/usr/agitg/log
+
+    environment:
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+      REDIS_HOST: ${ip}:7001,${ip}:7002,${ip}:7003,${ip}:7004,${ip}:7005,${ip}:7006
+      QUEUE_HOST: tcp://${ip}:61616,tcp://${ip}:61617,tcp://${ip}:61618
+      QUEUE_USER: admin
+      QUEUE_PASSWORD: U6AKsqJNdUaRuFLBeeQv
+
+    depends_on: 
+      - mailbox
+    command: java -jar -Xms128m -Xmx1024m -Dserver.port=80 -Dspring.config.location=/config/application.yml -Dlogging.config=/config/logback.xml app.jar
+
+  mail-epp:
+    image: mail-epp
+    container_name: mail-epp-node1
+    build:
+      context: epp/setting
+    restart: on-failure
+    volumes:
+      - ./log/epp:/usr/agitg/log
+    ports:
+      - "9050:80"
+
+    environment:
+      REDIS_HOST: ${ip}:7001,${ip}:7002,${ip}:7003,${ip}:7004,${ip}:7005,${ip}:7006
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+      QUEUE_HOST: tcp://${ip}:61616,tcp://${ip}:61617,tcp://${ip}:61618
+      QUEUE_USER: admin
+      QUEUE_PASSWORD: U6AKsqJNdUaRuFLBeeQv
+    depends_on: 
+      - mailbox
+    command: java -jar -Xms256m -Xmx1024m -Dserver.port=80 -Dspring.config.location=/config/application.yml -Dlogging.config=/config/logback.xml app.jar
+
+  mail-epc:
+    image: mail-epc
+    container_name: mail-epc
+    build:
+      context: epconsumer/setting
+    ports:
+      - "9060:80"
+    restart: on-failure
+    volumes:
+      - ./log/epconsumer:/usr/agitg/log
+
+    environment:
+      REDIS_HOST: ${ip}:7001,${ip}:7002,${ip}:7003,${ip}:7004,${ip}:7005,${ip}:7006
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+      QUEUE_HOST: tcp://${ip}:61616,tcp://${ip}:61617,tcp://${ip}:61618
+      QUEUE_USER: admin
+      QUEUE_PASSWORD: U6AKsqJNdUaRuFLBeeQv
+    depends_on: 
+      - mailbox
+    command: java -jar -Xms128m -Xmx2048m -Dserver.port=80 -Dspring.config.location=/config/application.yml -Dlogging.config=/config/logback.xml app.jar
+
+  mail-admin:
+    image: mail-admin
+    container_name: mail-admin-node1
+    build:
+      context: mail-admin/setting
+    ports:
+      - "9070:80"
+    restart: always
+    volumes:
+      - ./log/mail-admin:/usr/agitg/log
+    environment:
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+    depends_on: 
+      - mailbox
+    command: java -jar -Xms128m -Xmx1620m -Dserver.port=80 -Dspring.config.location=/config/application.yml -Dcom.agitg.mail.admin.config=/config -Dlogging.config=/config/logback.xml app.jar
+
+  mail-api:
+    image: mail-api
+    container_name: mail-api-node1
+    build:
+      context: mail-api/setting
+    ports:
+      - "9080:80"
+
+    environment:
+      DB_WRITE_IP: ${ip}
+      DB_WRITE_PORT: 3316
+      DB_READ_IP: ${ip}
+      DB_READ_PORT: 3316
+      DB_USER: root
+      DB_PASSWORD: 123456
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+
+    restart: on-failure
+    volumes:
+      - ./log/mail-api:/usr/agitg/log
+    depends_on: 
+      - oauth
+    command: java -jar -Xms128m -Xmx1620m -Dserver.port=80 -Dspring.config.location=/config/application.yml -Dlogging.config=/config/logback.xml app.jar
+
+  feedback:
+    image: mail-feedback
+    container_name: feedback-node1
+    build:
+      context: feedback-report/setting
+    restart: on-failure
+    volumes:
+      - ./log/feedback-report:/usr/agitg/log
+    ports:
+      - "9090:80"
+
+    environment:
+      DB_WRITE_IP: ${ip}
+      DB_WRITE_PORT: 3316
+      DB_READ_IP: ${ip}
+      DB_READ_PORT: 3316
+      DB_USER: root
+      DB_PASSWORD: 123456
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+
+    depends_on: 
+      - mailbox
+    command: java -jar -Xms256m -Xmx1638m -Dserver.port=80 -Dspring.config.location=/config/application.yml -Dlogging.config=/config/logback.xml app.jar
+
+  subscribe:
+    image: mail-subscribe
+    container_name: subscribe-node1
+    build:
+      context: mail-subscribe/setting
+    restart: on-failure
+    volumes:
+      - ./log/mail-subscribe:/usr/agitg/log
+    ports:
+      - "9095:80"
+
+    environment:
+      DB_WRITE_IP: ${ip}
+      DB_WRITE_PORT: 3316
+      DB_READ_IP: ${ip}
+      DB_READ_PORT: 3316
+      DB_USER: root
+      DB_PASSWORD: 123456
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+    depends_on: 
+      - mailbox
+    command: java -jar -Xms128m -Xmx1620m -Dserver.port=80 -Dspring.config.location=/config/application.yml -Dlogging.config=/config/logback.xml app.jar
+
+
+
