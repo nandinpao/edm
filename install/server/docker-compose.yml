@@ -1,0 +1,94 @@
+name: agitg-server
+
+services:
+
+  mysql-edm:
+      image: mysql:8.4.2-oraclelinux9
+      container_name: mysql-edm
+      hostname: mysql-edm
+      volumes:
+        - "./server/mysql/db/data:/var/lib/mysql"
+        - "./server/mysql/db/conf.d:/etc/mysql/conf.d/"
+        - "./server/initial/dbscript:/docker-entrypoint-initdb.d/"
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: 123456
+        MYSQL_USER: admin
+        MYSQL_PASSWORD: 123456
+        MYSQL_DATABASE: alliance
+      ports:
+        - "3326:3306"
+      command: --sql_mode=""
+
+  artemis-edm:
+    image: apache/activemq-artemis:2.36.0
+    container_name: artemis-edm
+    restart: always
+    volumes:
+      - ./server/artemis/node0:/var/lib/artemis-instance
+    environment:
+      ENABLE_JMX_EXPORTER: "true"
+      ARTEMIS_MIN_MEMORY: "512M"
+      ARTEMIS_MAX_MEMORY: "2000M"
+      ARTEMIS_USER: "admin"
+      ARTEMIS_PASSWORD: "U6AKsqJNdUaRuFLBeeQv"
+    ports:
+      - "8161:8161"
+      - "61616:61616"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 2g
+        reservations:
+          cpus: "0.25"
+          memory: 1g
+
+  redis-edm:
+    image: redis
+    container_name: redis-server-edm
+    hostname: redis-server-edm
+    restart: always
+    volumes:
+      - ./server/redis/node1:/data
+    ports:
+      - 7001:7001
+      - 17001:17001
+
+  consul1:
+    image: consul:1.15.4
+    container_name: consul-node1
+    hostname: node1
+    restart: always
+    command: agent -server -bootstrap-expect=3 -node=node1 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1
+
+  consul2:
+    image: consul:1.15.4
+    container_name: consul-node2
+    hostname: node2
+    restart: always
+    command: agent -server -retry-join=node1 -node=node2 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1
+    depends_on:
+        - consul1
+
+  consul3:
+    image: consul:1.15.4
+    container_name: consul-node3
+    hostname: node3
+    restart: always
+    command: agent -server -retry-join=node1 -node=node3 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1
+    depends_on:
+        - consul1
+
+  consul4:
+    image: consul:1.15.4
+    container_name: consul-node4
+    hostname: node4
+    restart: always
+    command: agent -retry-join=node1 -node=ndoe4 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1 -ui 
+    ports:
+      - 8500:8500
+      - "8600:8600/udp"
+    depends_on:
+        - consul2
+        - consul3

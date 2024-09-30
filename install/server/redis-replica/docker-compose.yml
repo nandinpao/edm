@@ -1,0 +1,126 @@
+version: '3.8'
+
+services:
+    redis-master1:
+        container_name: redis-master1
+        hostname: redis-master1
+        restart: always
+        build:
+            context: redis
+        volumes:
+            - ./data/node1:/data
+        ports: 
+            - 7001:7001
+            - 17001:17001
+        entrypoint: [redis-server, /etc/redis/rediscluster.conf, --port,"7001", --cluster-announce-ip, "${ip}"]
+    
+    redis-master2:
+        container_name: redis-master2
+        hostname: redis-master2
+        restart: always
+        build:
+            context: redis 
+        volumes:
+            - ./data/node2:/data
+        ports: 
+            - 7002:7002 
+            - 17002:17002
+        entrypoint: [redis-server, /etc/redis/rediscluster.conf, --port,"7002", --cluster-announce-ip, "${ip}"]
+    
+    redis-master3:
+        container_name: redis-master3
+        hostname: redis-master3
+        restart: always
+        build:
+            context: redis 
+        volumes:
+            - ./data/node3:/data
+        ports: 
+            - 7003:7003 
+            - 17003:17003
+        entrypoint: [redis-server, /etc/redis/rediscluster.conf, --port,"7003", --cluster-announce-ip ,"${ip}"]
+    
+    redis-slave1:
+        container_name: redis-slave1
+        hostname: redis-slave1
+        restart: always
+        build:
+            context: redis 
+        volumes:
+            - ./data/node4:/data
+        ports: 
+            - 7004:7004
+            - 17004:17004
+        depends_on:
+          - redis-master1
+        entrypoint: [redis-server, /etc/redis/rediscluster.conf, --port,"7004", --cluster-announce-ip ,"${ip}"]
+        # command: redis-server --slaveof redis-master1 7000
+
+    redis-slave2:
+        container_name: redis-slave2
+        hostname: redis-slave2
+        restart: always
+        build:
+            context: redis 
+        volumes:
+            - ./data/node5:/data
+        ports: 
+            - 7005:7005
+            - 17005:17005 
+        depends_on:
+          - redis-master2
+        entrypoint: [redis-server, /etc/redis/rediscluster.conf, --port,"7005", --cluster-announce-ip ,"${ip}"]
+        # command: redis-server --slaveof redis-master2 7001
+   
+    redis-slave3:
+        container_name: redis-slave3
+        hostname: redis-slave3
+        restart: always
+        build:
+            context: redis 
+        volumes:
+            - ./data/node6:/data
+        ports: 
+            - 7006:7006
+            - 17006:17006 
+        depends_on:
+          - redis-master3
+        entrypoint: [redis-server, /etc/redis/rediscluster.conf, --port, "7006", --cluster-announce-ip , "${ip}"]
+        # command: redis-server --slaveof redis-master3 7002
+    
+    redis-cluster-creator:
+        container_name: redis-cluster-creator
+        image: redis
+        entrypoint: [/bin/sh,-c,'echo "yes" | redis-cli --cluster create ${ip}:7001 ${ip}:7002 ${ip}:7003 ${ip}:7004 ${ip}:7005 ${ip}:7006 --cluster-replicas 1']
+        depends_on: 
+          - redis-master1 
+          - redis-master2
+          - redis-master3 
+          - redis-slave1
+          - redis-slave2
+          - redis-slave3
+
+    redis-sentinel1:
+        container_name: redis-sentinel1
+        build: sentinel
+        depends_on:
+          - redis-master1
+          - redis-master2
+          - redis-master3
+
+    redis-sentinel2:
+        container_name: redis-sentinel2
+        build: sentinel
+        depends_on:
+          - redis-master1
+          - redis-master2
+          - redis-master3
+
+    redis-sentinel3:
+        container_name: redis-sentinel3
+        build: sentinel
+        depends_on:
+          - redis-master1
+          - redis-master2
+          - redis-master3
+

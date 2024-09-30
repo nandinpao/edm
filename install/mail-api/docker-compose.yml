@@ -1,0 +1,26 @@
+
+version: '3.8'
+
+services:
+  mail-api-01:
+    image: mail-api
+    container_name: mail-api-node1
+    build:
+      context: setting
+    ports:
+      - "8090:80"
+
+    environment:
+      DB_WRITE_IP: ${ip}
+      DB_WRITE_PORT: 3316
+      DB_READ_IP: ${ip}
+      DB_READ_PORT: 3316
+      DB_USER: root
+      DB_PASSWORD: 123456
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+
+    restart: on-failure
+    volumes:
+      - ./log:/usr/agitg/log
+    

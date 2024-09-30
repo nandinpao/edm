@@ -1,0 +1,69 @@
+server:
+    max-http-header-size: 10MB
+    port : 9095
+    http2:
+      enabled: true
+    servlet:
+      session:
+        timeout: 24h
+      context-path: /
+
+spring:
+  application:
+    name: subscribe
+  cloud:
+    consul:
+      host: ${CONSULE_HOST}
+      port: ${CONSULE_PORT}
+      discovery:
+        service-name: subscribe
+        health-check-path: /actuator/health
+        heartbeat:
+          enabled: true
+
+  datasource:
+    writer: 
+      type: com.zaxxer.hikari.HikariDataSource
+      url: jdbc:mysql://${DB_WRITE_IP}:${DB_WRITE_PORT}/alliance?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true&allowPublicKeyRetrieval=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}
+      hikari:
+        connection-test-query: SELECT 1 FROM DUAL
+        idle-timeout: 10000
+        maximum-pool-size: 5
+        connection-timeout: 60000
+        pool-name: mailbox2
+        max-lifetime: 1800000
+    reader: 
+      type: com.zaxxer.hikari.HikariDataSource
+      url: jdbc:mysql://${DB_READ_IP}:${DB_READ_PORT}/alliance?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true&allowPublicKeyRetrieval=true
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}
+      hikari:
+        connection-test-query: SELECT 1 FROM DUAL
+        idle-timeout: 10000
+        maximum-pool-size: 5
+        connection-timeout: 60000
+        pool-name: mailbox2
+        max-lifetime: 1800000
+  
+  mvc:
+    view:
+      prefix : /WEB-INF/jsp/
+      suffix : .jsp
+      
+  servlet:
+    multipart:
+      location: /Users/nandin.pao/Documents/workspace/poshero/sender-report/upload_tmp
+      max-file-size: 10240KB
+      max-request-size: 10240KB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: always        

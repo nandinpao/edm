@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Agitg - Home</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="eDM郵件大量發送免費使用，最佳化寄件人，讓你更有效率發送大量郵件，讓行銷手中的利器更加進化">
+<meta name="author" content="AdminKit">
+
+<meta property="og:title" content="Agitg" />
+<meta property="og:description" content="eDM郵件大量發送免費使用，最佳化寄件人，讓你更有效率發送大量郵件，讓行銷手中的利器更加進化" />
+<meta property="og:url" content="https://www.agitg.com/" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aigtg" />
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="shortcut icon" href="./img/icons/icon-48x48.ico" />
+
+<link href="./css/bootstrap5/bootstrap.css" rel="stylesheet">
+<link href="./css/app.css" rel="stylesheet">
+
+<link href="./vendor/font-awesome/css/all.min.css" rel="stylesheet">
+
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+	rel="stylesheet">
+<div th:replace="common/head :: head"></div>
+</head>
+
+<body>
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="index.html"> <span
+					class="align-middle">Agitg Admin</span>
+				</a>
+
+				<div th:replace="common/menu :: menu"></div>
+
+			</div>
+		</nav>
+
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+				<a class="sidebar-toggle d-flex"> <i
+					class="hamburger align-self-center"></i>
+				</a>
+
+				<div class="navbar-collapse collapse">
+					<div th:replace="common/header :: header"></div>
+				</div>
+			</nav>
+
+			<main class="content">
+				<div class="container-fluid p-0">
+
+					<div class="row mb-2 mb-xl-3">
+						<div class="col-auto d-none d-sm-block">
+							<h3>Setting</h3>
+						</div>
+
+						<div class="col-auto ms-auto text-end mt-n1">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
+									<li class="breadcrumb-item"><a href="#">Agitg</a></li>
+									<li class="breadcrumb-item"><a href="#">Sender</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Setting</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="col-12 col-lg-12 col-xxl-12 d-flex">
+							<div class="card flex-fill">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Setting</h5>
+								</div>
+								<div class="alert alert-danger alert-dismissible d-none"
+									role="alert">
+									<button type="button" class="btn-close" data-bs-dismiss="alert"
+										aria-label="Close"></button>
+									<div class="alert-message" id="error"></div>
+								</div>
+
+								<div class="card-body text-left">
+									<div>
+										<a id="mysender" class="btn btn-primary btn-sm"
+											onclick="myuploadmail.panel.query()"><svg
+												xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+												viewBox="0 0 24 24" fill="none" stroke="currentColor"
+												stroke-width="2" stroke-linecap="round"
+												stroke-linejoin="round"
+												class="feather feather-plus-square align-middle mr-2">
+												<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+												<line x1="12" y1="8" x2="12" y2="16"></line>
+												<line x1="8" y1="12" x2="16" y2="12"></line></svg> New</a>
+                                    </div>
+                                    <table class="table table-striped my-0" id="mytable">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th class="d-none d-xl-table-cell">Status</th>
+                                                <th class="d-none d-xl-table-cell">Max Send Count</th>
+                                                <th class="d-none d-xl-table-cell">Function</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="6" align="center"><a href="#">
+
+                                                        <div class="btn-group mb-3" role="group"
+                                                            aria-label="Default button group">
+                                                            <button type="button" class="btn btn-secondary">Add Email
+                                                            </button>
+															<!-- <button type="button" class="btn btn-secondary">新增 Telegram </button>
+												<button type="button" class="btn btn-secondary">新增 Line</button> -->
+														</div></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="card-footer"></div>
+							</div>
+						</div>
+					</div>
+
+					<nav aria-label="Page navigation example" id="pagging"></nav>
+
+					<div class="row"></div>
+
+
+				</div>
+			</main>
+
+			<div th:replace="common/footer :: footer"></div>
+
+		</div>
+	</div>
+	<div th:replace="common/javascript :: javascript"></div>
+
+	<script src="./js/app.js"></script>
+	<script src="./js/utils.js"></script>
+	<script src="./js/module.js"></script>
+	<script src="./js/mysmtp.js"></script>
+	<script src="./js/jquery/jquery.scrollTo-min.js" type="text/javascript"></script>
+	<script src="./js/jquery/jquery.twbsPagination.min.js"
+		type="text/javascript"></script>
+
+	<script>
+		$(document).ready(function() {
+			mysmtp.action.list();
+		});
+	</script>
+</body>
+</html>

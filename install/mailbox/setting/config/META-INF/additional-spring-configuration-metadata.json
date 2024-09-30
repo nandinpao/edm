@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "server.tomcat.connect-timeout",
+  "type": "java.lang.String",
+  "description": "A description for 'server.tomcat.connect-timeout'"
+}]}

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mail-epc:
+    image: mail-epc
+    container_name: mail-epc
+    build:
+      context: setting
+    ports:
+      - "9801:80"
+    restart: on-failure
+    volumes:
+      - ./log:/usr/agitg/log
+
+    environment:
+      REDIS_HOST: ${ip}:7001,${ip}:7002,${ip}:7003,${ip}:7004,${ip}:7005,${ip}:7006
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+
+    
+

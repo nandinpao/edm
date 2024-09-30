@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  oauth-01:
+    image: oauth
+    container_name: oauth-node1
+    build:
+      context: setting
+    restart: on-failure
+    volumes:
+      - ./log:/usr/agitg/log
+      
+    ports:
+      - "9900:80"
+      
+    environment:
+      DB_WRITE_IP: ${ip}
+      DB_WRITE_PORT: 3316
+      DB_READ_IP: ${ip}
+      DB_READ_PORT: 3316
+      DB_USER: root
+      DB_PASSWORD: 123456
+      CONSULE_HOST: ${ip}
+      CONSULE_PORT: 8500
+            
+    

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Agitg - Home</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta name="description"
+	content="eDM郵件大量發送免費使用，最佳化寄件人，讓你更有效率發送大量郵件，讓行銷手中的利器更加進化">
+<meta name="author" content="AdminKit">
+
+<meta property="og:title" content="Agitg" />
+<meta property="og:description" content="eDM郵件大量發送免費使用，最佳化寄件人，讓你更有效率發送大量郵件，讓行銷手中的利器更加進化" />
+<meta property="og:url" content="https://www.agitg.com/" />
+<meta property="og:locale" content="zh_TW" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Aigtg" />
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="shortcut icon" href="./img/icons/icon-48x48.ico" />
+<link href="css/app.css" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+	rel="stylesheet">
+
+<link href="./vendor/font-awesome/css/all.min.css" rel="stylesheet">
+
+<div th:replace="common/head :: head"></div>
+
+<style>
+.tooltip {
+	position: absolute;
+	visibility: hidden;
+	background-color: #FFF;
+	display: flex;
+	font-family: sans-serif;
+	max-width: 500px;
+}
+</style>
+</head>
+
+
+<body>
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="index.html"> <span
+					class="align-middle">Agitg Admin</span>
+				</a>
+
+				<div th:replace="common/menu :: menu"></div>
+
+			</div>
+		</nav>
+
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+				<a class="sidebar-toggle d-flex"> <i
+					class="hamburger align-self-center"></i>
+				</a>
+
+				<div class="navbar-collapse collapse">
+					<div th:replace="common/header :: header"></div>
+				</div>
+			</nav>
+
+			<main class="content">
+				<div class="container-fluid p-0">
+
+					<div class="row mb-2 mb-xl-3">
+						<div class="col-auto d-none d-sm-block">
+							<h3>Info</h3>
+						</div>
+
+						<div class="col-auto ms-auto text-end mt-n1">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb bg-transparent p-0 mt-1 mb-0">
+									<li class="breadcrumb-item"><a href="#">Agitg</a></li>
+									<li class="breadcrumb-item"><a href="#">Info</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Analytics</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div id="mydashboard" class="row">
+						<div class="col-xl-6 col-xxl-5 d-flex">
+							<div class="w-100">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="card">
+											<div class="card-body">
+												<h5 class="card-title mb-4">Total</h5>
+                                                <h1 class="mt-1 mb-3" id="dashboard_total">-</h1>
+                                                <div class="mb-1">
+                                                    <span class="text-danger"> <i
+                                                        class="mdi mdi-arrow-bottom-right"></i>
+                                                    </span> <span class="text-muted">Total Sent This Month</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-4">Success</h5>
+                                                <h1 class="mt-1 mb-3" id="dashboard_success">-</h1>
+                                                <div class="mb-1">
+                                                    <span class="text-danger"> <i
+                                                        class="mdi mdi-arrow-bottom-right"></i>
+                                                    </span> <span class="text-muted">Successfully Sent This Month</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-4">Opened</h5>
+                                                <h1 class="mt-1 mb-3" id="dashboard_setting">-</h1>
+                                                <div class="mb-1">
+                                                    <span class="text-danger"> <i
+                                                        class="mdi mdi-arrow-bottom-right"></i>
+                                                    </span> <span class="text-muted">Opened in the Last 30 Days</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title mb-4">Failed</h5>
+                                                <h1 class="mt-1 mb-3" id="dashboard_fail">-</h1>
+                                                <div class="mb-1">
+                                                    <span class="text-danger"> <i
+                                                        class="mdi mdi-arrow-bottom-right"></i>
+                                                    </span> <span class="text-muted">Failed to Send This Month</span>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xl-6 col-xxl-7">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Monthly Usage Statistics</h5>
+                                </div>
+                                <div class="card-body py-3">
+                                    <div class="chart chart-sm">
+                                        <canvas id="chartjs-dashboard-line"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
+                            <div class="card flex-fill w-100">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Opens and Clicks in the Last 30 Days</h5>
+                                </div>
+                                <div class="card-body d-flex w-100">
+                                    <div class="align-self-center chart chart-lg" id="chartjs-dashboard-open-bar">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
+                            <div class="card flex-fill w-100">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Opens per Week (Last 30 Days)</h5>
+                                </div>
+                                <div class="card-body d-flex w-100">
+                                    <div class="align-self-center chart chart-lg">
+                                        <canvas id="chartjs-dashboard-bar"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
+                            <div class="card flex-fill w-100">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Email Label Opens (60 Days)</h5>
+                                </div>
+                                <div class="card-body d-flex w-100">
+                                    <div class="align-self-center chart chart-lg">
+                                        <svg id="bubble-open"></svg>
+                                        <div class="tooltip">
+                                            <div>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
+                            <div class="card flex-fill w-100">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Email Label Clicks (60 Days)</h5>
+                                </div>
+                                <div class="card-body d-flex w-100">
+                                    <div class="align-self-center chart chart-lg">
+                                        <svg id="bubble-click"></svg>
+                                        <div class="tooltip">
+                                            <div>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-xxl-12 d-flex">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Account Sends This Month</h5>
+								</div>
+								<table class="table table-striped my-0" id="mySettings">
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+
+			<div th:replace="common/footer :: footer"></div>
+
+		</div>
+	</div>
+
+	<div th:replace="common/javascript :: javascript"></div>
+	<script src="https://d3js.org/d3.v6.js"></script>
+
+	<script src="./js/utils.js"></script>
+	<script src="./js/module.js"></script>
+	<script src="./js/app.js"></script>
+	<script src="./js/plugin/d3-module.js"></script>
+	<script src="./js/plugin/dashboard.js"></script>
+
+	<script>
+		$(document).ready(function() {
+
+			dashboard.action.list();
+
+			dashboard.action.openRate();
+
+			dashboard.action.tagOpenRate();
+
+			dashboard.action.tagClickRate();
+			
+			dashboard.action.openDateRate();
+
+		});
+	</script>
+</body>
+</html>

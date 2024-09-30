@@ -1,0 +1,29 @@
+
+
+<ul th:fragment="header" class="navbar-nav navbar-align">
+	
+	<li class="nav-item dropdown"><a
+		class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
+		data-bs-toggle="dropdown"> <i class="align-middle"
+			data-feather="settings"></i>
+	</a> 
+		<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+		data-bs-toggle="dropdown"> <img th:src="${user.userImage}"
+			class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span
+			class="text-dark" th:text="${user.userName}"></span>
+		</a>
+		
+		<div class="dropdown-menu dropdown-menu-end">
+		
+			<a class="dropdown-item" href="pages-settings.html">
+				<i class="align-middle me-1" data-feather="settings"></i> Setting
+			</a> 
+				
+			<div class="dropdown-divider"></div>
+			
+			<a class="dropdown-item" href="./user/logout">
+				<i class="fas fa-sign-out-alt"></i>  Logout
+			</a>
+		</div>
+	</li>
+</ul>
