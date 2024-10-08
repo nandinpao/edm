@@ -1,25 +1,32 @@
 # edm
 Electronic Direct Mail
 
+# Service System Installation Guide
 
-# Installation Guide for Service System
-Prerequisites
-Before you proceed with the installation, ensure that Docker is installed and running on your system. The following components will be deployed as Docker containers.
+## Prerequisites
+
+Before starting, make sure **Docker** is installed and running on your system. The components mentioned below will be deployed as Docker containers.
 
 ## Step 1: Install Core Services
-First, install the services located in the install/server directory. These core services include Redis, Consul, and MySQL. By default, the system will automatically retrieve the local machine's IP address.
 
-If you already have these services running, ensure that the following configurations are correctly set for each component:
+Navigate to the `install/server` directory and install the following services. The system will automatically detect your local machine's IP address. If these services are already running on your machine, make sure to configure them properly.
 
-Redis
-Consul
-MySQL
-## Step 2: Install the Service Components
-Open the docker-compose.yml file and configure the IP addresses, usernames, and passwords for Redis, MySQL, and Consul.
+- **Redis**
+- **Consul**
+- **MySQL**
 
-After making the necessary changes, execute the ./start.sh script.
+> **Note:** If you already have these services installed, configure the respective service settings as described in Step 2.
 
-Once the services have successfully started, you can access the system via the following URL:
+## Step 2: Install Service Components
+
+1. Open the `docker-compose.yml` file.
+2. Configure the IP addresses, usernames, and passwords for:
+   - **Redis**
+   - **MySQL**
+   - **Consul**
+3. Once the configurations are set, run the following command to start the services:
+   ```bash
+   ./start.sh
 
 arduino
 複製程式碼
