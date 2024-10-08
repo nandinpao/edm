@@ -11,10 +11,10 @@ Before starting, make sure **Docker** is installed and running on your system. T
 
 Navigate to the `install/server` directory and install the following services. The system will automatically detect your local machine's IP address. If these services are already running on your machine, make sure to configure them properly.
 
-- **Redis**
-- **Consul**
-- **MySQL**
-- **Apache Artemis**
+- **Redis 3+**
+- **Consul 1.15.4**
+- **MySQL 8.4.2**
+- **Apache Artemis 2.36.0**
 
 > **Note:** If you already have these services installed, configure the respective service settings as described in Step 2.
 
