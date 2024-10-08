@@ -14,6 +14,7 @@ Navigate to the `install/server` directory and install the following services. T
 - **Redis**
 - **Consul**
 - **MySQL**
+- **Apache Artemis**
 
 > **Note:** If you already have these services installed, configure the respective service settings as described in Step 2.
 
