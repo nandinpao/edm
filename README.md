@@ -38,6 +38,6 @@ Navigate to the `install/server` directory and install the following services. T
 ```bash
 http://{ip}:8090
 ```
-Replace {ip} with your machine's IP address.
+Replace {ip} with your machine's IP address. Example: http://192.168.1.11:8090
 
 # Configuration from Docker's setting
