@@ -29,7 +29,7 @@ Navigate to the `install/server` directory and install the following services. T
    ```bash
    ./start.sh
    ```
-4. After the services are successfully started, access the application by visiting
+4. After the services are successfully started, access the application by visiting
 ```bash
 http://{ip}:8090
 ```
