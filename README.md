@@ -27,7 +27,6 @@ Navigate to the `install/server` directory and install the following services. T
 3. Once the configurations are set, run the following command to start the services:
    ```bash
    ./start.sh
-
 4. After the services are successfully started, access the application by visiting
 ```bash
 http://{ip}:8090
