@@ -38,4 +38,4 @@ http://{ip}:8090
 ```
 Replace {ip} with your machine's IP address.
 
-#Configuration
+# Configuration from Docker's setting
