@@ -1,5 +1,8 @@
-# edm
-Electronic Direct Mail
+# Email Marketing Solution(Electronic Direct Mail)
+Email Marketing Solution. No more relying on third-party platforms! Build your own EDM platform to
+        take control of your email marketing, freely manage SMTP, perform
+        real-time data analysis, and ensure high security. Improve marketing
+        efficiency and reliability.
 
 # Service System Installation Guide
 
