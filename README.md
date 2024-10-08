@@ -4,6 +4,8 @@ Email Marketing Solution. No more relying on third-party platforms! Build your o
         real-time data analysis, and ensure high security. Improve marketing
         efficiency and reliability.
 
+Official Website: http://agitg.com
+
 # Service System Installation Guide
 
 ## Prerequisites
