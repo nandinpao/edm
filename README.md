@@ -16,7 +16,7 @@ Before starting, make sure **Docker** is installed and running on your system. T
 
 ## Step 1: Install Core Services
 
-Navigate to the `server/` directory and install the following services. The system will automatically detect your local machine's IP address. If these services are already running on your machine, make sure to configure them properly.
+Navigate to the `server` directory and install the following services. The system will automatically detect your local machine's IP address. If these services are already running on your machine, make sure to configure them properly.
 
 - **Redis 3+**
 - **Consul 1.15.4**
