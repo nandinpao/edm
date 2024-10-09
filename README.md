@@ -16,7 +16,7 @@ Before starting, make sure **Docker** is installed and running on your system. T
 
 ## Step 1: Install Core Services
 
-Navigate to the `install/server` directory and install the following services. The system will automatically detect your local machine's IP address. If these services are already running on your machine, make sure to configure them properly.
+Navigate to the `server/` directory and install the following services. The system will automatically detect your local machine's IP address. If these services are already running on your machine, make sure to configure them properly.
 
 - **Redis 3+**
 - **Consul 1.15.4**
@@ -25,13 +25,14 @@ Navigate to the `install/server` directory and install the following services. T
 
 > **Note:** If you already have these services installed, configure the respective service settings as described in Step 2.
 
-## Step 2: Install Service Components
+## Step 2: Install eDM Service Components
 
 1. Open the `docker-compose.yml` file.
 2. Configure the IP addresses, usernames, and passwords for:
    - **Redis**
    - **MySQL**
    - **Consul**
+   - **Artemis**
 3. Once the configurations are set, run the following command to start the services:
    ```bash
    ./start.sh
