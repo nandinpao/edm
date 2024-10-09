@@ -5,6 +5,7 @@ Email Marketing Solution. No more relying on third-party platforms! Build your o
         efficiency and reliability.
 
 Official Website: http://agitg.com
+Docuement: https://nandinpao.gitbook.io/agitg-api
 
 # Service System Installation Guide
 
