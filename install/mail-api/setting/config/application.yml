@@ -1,6 +1,6 @@
 server:
   max-http-request-header-size: 10MB
-  port : 9080
+  port: 9080
   tomcat:
     threads:
       max: 1000
@@ -14,13 +14,14 @@ spring:
     consul:
       host: ${CONSULE_HOST}
       port: ${CONSULE_PORT}
+      enabled: true
       discovery:
         service-name: protocol
         health-check-path: /actuator/health
         heartbeat:
           enabled: true
   datasource:
-    writer: 
+    writer:
       type: com.zaxxer.hikari.HikariDataSource
       url: jdbc:mysql://${DB_WRITE_IP}:${DB_WRITE_PORT}/alliance?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true&allowPublicKeyRetrieval=true
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -31,9 +32,9 @@ spring:
         idle-timeout: 10000
         maximum-pool-size: 5
         connection-timeout: 60000
-        pool-name: mailbox2
+        pool-name: sender-report2
         max-lifetime: 1800000
-    reader: 
+    reader:
       type: com.zaxxer.hikari.HikariDataSource
       url: jdbc:mysql://${DB_READ_IP}:${DB_READ_PORT}/alliance?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true&allowPublicKeyRetrieval=true
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -44,7 +45,7 @@ spring:
         idle-timeout: 10000
         maximum-pool-size: 5
         connection-timeout: 60000
-        pool-name: mailbox2
+        pool-name: sender-report2
         max-lifetime: 1800000
 
   servlet:
@@ -59,4 +60,4 @@ management:
       exposure:
         include: "*"
     health:
-      show-details: always        
+      show-details: always

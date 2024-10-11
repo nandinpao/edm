@@ -1,6 +1,6 @@
 server:
   max-http-header-size: 10MB
-  port : 9030
+  port: 9030
   tomcat:
     threads:
       max: 1000
@@ -21,7 +21,7 @@ spring:
         heartbeat:
           enabled: true
   datasource:
-    writer: 
+    writer:
       type: com.zaxxer.hikari.HikariDataSource
       url: jdbc:mysql://${DB_WRITE_IP}:${DB_WRITE_PORT}/alliance?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true&allowPublicKeyRetrieval=true
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -32,9 +32,9 @@ spring:
         idle-timeout: 10000
         maximum-pool-size: 5
         connection-timeout: 60000
-        pool-name: mailbox2
+        pool-name: sender-report2
         max-lifetime: 1800000
-    reader: 
+    reader:
       type: com.zaxxer.hikari.HikariDataSource
       url: jdbc:mysql://${DB_READ_IP}:${DB_READ_PORT}/alliance?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true&allowPublicKeyRetrieval=true
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -45,14 +45,14 @@ spring:
         idle-timeout: 10000
         maximum-pool-size: 5
         connection-timeout: 60000
-        pool-name: mailbox2
+        pool-name: sender-report2
         max-lifetime: 1800000
-  data :
+  data:
     redis:
       database: 0
       password:
       timeout: 30000
-      mode: cluster
+      mode: ${REDIS_MODE}
       pool:
         maxIdle: 16
         minIdle: 8
@@ -62,7 +62,7 @@ spring:
         soTimeout: 3000
         size: 10
       single:
-        address:
+        address: ${REDIS_HOST}
       cluster:
         scanInterval: 1000
         nodes: ${REDIS_HOST}
@@ -77,12 +77,10 @@ spring:
         nodes:
         masterOnlyWrite: true
         failMax: 3
-
-  servlet:
-    multipart:
-      location: /Users/nandin.pao/Documents/workspace/poshero/sender-report/upload_tmp
-      max-file-size: 10240KB
-      max-request-size: 10240KB
+    servlet:
+      multipart:
+        max-file-size: 10240KB
+        max-request-size: 10240KB
 
 management:
   endpoints:
@@ -90,4 +88,4 @@ management:
       exposure:
         include: "*"
     health:
-      show-details: always        
+      show-details: always

@@ -1,5 +1,5 @@
 server:
-  port : 9040
+  port: 9040
   servlet:
     context-path: /black-schedule
 
@@ -9,11 +9,12 @@ management:
       exposure:
         include: "*"
     health:
-      show-details: always        
+      show-details: always
 
 spring:
   application:
     name: black-schedule
+
   cloud:
     consul:
       host: ${CONSULE_HOST}
@@ -21,15 +22,16 @@ spring:
       discovery:
         service-name: black-schedule
         health-check-path: /actuator/health
+        prefer-ip-address: true
+        ip-address: ${CONSULE_HOST}
         heartbeat:
           enabled: true
-
-  data :
+  data:
     redis:
       database: 0
       password:
       timeout: 30000
-      mode: cluster
+      mode: ${REDIS_MODE}
       pool:
         maxIdle: 16
         minIdle: 8
@@ -39,7 +41,7 @@ spring:
         soTimeout: 3000
         size: 10
       single:
-        address:
+        address: ${REDIS_HOST}
       cluster:
         scanInterval: 1000
         nodes: ${REDIS_HOST}
@@ -57,15 +59,15 @@ spring:
 
 mqueue:
   artemis:
-    id : Black-Schedule
-    server : (${QUEUE_HOST})
-    user : ${QUEUE_USER}
-    password : ${QUEUE_PASSWORD}
-    maxConnection : 1000
-    connectionTimeout : 30000
-    expiryTimeout : 0
-    idleTimeout : 30000
-    prefetchSize : 1
+    id: Black-Schedule
+    server: (${ARTEMIS_HOST})
+    user: ${ARTEMIS_USER}
+    password: ${ARTEMIS_PASSWORD}
+    maxConnection: 1000
+    connectionTimeout: 30000
+    expiryTimeout: 0
+    idleTimeout: 30000
+    prefetchSize: 1
     maximumActiveSessionPerConnection: 1
     connectionCheckInterval: 10000
     retryInterval: 3000

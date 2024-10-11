@@ -1,6 +1,10 @@
 server:
   max-http-request-header-size: 10MB
-  port : 9020
+  port: 9020
+  tomcat:
+    connect-timeout: 30 seconds
+    threads:
+      max: 1000
   servlet:
     context-path: /mailbox
 
@@ -9,20 +13,20 @@ spring:
     name: mailbox
   cloud:
     consul:
-      host: ${CONSULE_HOST}
-      port: ${CONSULE_PORT}
+      host: 127.0.0.1
+      port: 8500
       discovery:
         service-name: mailbox
         health-check-path: /actuator/health
         heartbeat:
           enabled: true
   datasource:
-    writer: 
+    writer:
       type: com.zaxxer.hikari.HikariDataSource
-      url: jdbc:mysql://${DB_WRITE_IP}:${DB_WRITE_PORT}/alliance?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://127.0.0.1:3316/alliance?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true&allowPublicKeyRetrieval=true
       driver-class-name: com.mysql.cj.jdbc.Driver
-      username: ${DB_USER}
-      password: ${DB_PASSWORD}
+      username: root
+      password: 123456
       hikari:
         connection-test-query: SELECT 1 FROM DUAL
         idle-timeout: 10000
@@ -30,12 +34,12 @@ spring:
         connection-timeout: 60000
         pool-name: mailbox2
         max-lifetime: 1800000
-    reader: 
+    reader:
       type: com.zaxxer.hikari.HikariDataSource
-      url: jdbc:mysql://${DB_READ_IP}:${DB_READ_PORT}/alliance?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://127.0.0.1:3316/alliance?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=true&allowPublicKeyRetrieval=true
       driver-class-name: com.mysql.cj.jdbc.Driver
-      username: ${DB_USER}
-      password: ${DB_PASSWORD}
+      username: root
+      password: 123456
       hikari:
         connection-test-query: SELECT 1 FROM DUAL
         idle-timeout: 10000
@@ -44,12 +48,12 @@ spring:
         pool-name: mailbox2
         max-lifetime: 1800000
 
-  data :
+  data:
     redis:
       database: 0
       password:
       timeout: 30000
-      mode: cluster
+      mode: ${REDIS_MODE}
       pool:
         maxIdle: 16
         minIdle: 8
@@ -59,10 +63,10 @@ spring:
         soTimeout: 3000
         size: 10
       single:
-        address:
+        address: ${REDIS_HOST}
       cluster:
         scanInterval: 1000
-        nodes: ${REDIS_HOST}
+        nodes: 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005,127.0.0.1:7006
         readMode: SLAVE
         retryAttempts: 3
         failedAttempts: 3
@@ -74,7 +78,7 @@ spring:
         nodes:
         masterOnlyWrite: true
         failMax: 3
-  
+
     servlet:
       multipart:
         location: /Users/nandin.pao/Documents/workspace/poshero/mailbox/upload_tmp
@@ -87,4 +91,4 @@ management:
       exposure:
         include: "*"
     health:
-      show-details: always        
+      show-details: always

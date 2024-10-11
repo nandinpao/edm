@@ -33,7 +33,7 @@ spring:
         idle-timeout: 10000
         maximum-pool-size: 5
         connection-timeout: 60000
-        pool-name: mailbox2
+        pool-name: sender-report2
         max-lifetime: 1800000
     reader: 
       type: com.zaxxer.hikari.HikariDataSource
@@ -46,7 +46,7 @@ spring:
         idle-timeout: 10000
         maximum-pool-size: 5
         connection-timeout: 60000
-        pool-name: mailbox2
+        pool-name: sender-report2
         max-lifetime: 1800000
   
   mvc:

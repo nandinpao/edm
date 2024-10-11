@@ -53,5 +53,10 @@ feign:
         readTimeout: 5000
 
 config:
-    gateway: 
-      file: /config/config/gateway.json
+  gateway:
+    file: /config/config/gateway.json
+  oauth:
+    google:
+      clientId: ${GOOGLE_CLIENT_ID}
+      clientSecret: ${GOOGLE_CLIENT_SECRET}
+      redirectUri: ${GOOGLE_REDIRECT_URI}

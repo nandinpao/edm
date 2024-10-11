@@ -20,7 +20,6 @@ spring:
         health-check-path: /actuator/health
         heartbeat:
           enabled: true
-
   datasource:
     writer: 
       type: com.zaxxer.hikari.HikariDataSource

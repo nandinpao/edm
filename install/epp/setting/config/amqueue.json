@@ -1,0 +1,26 @@
+{
+	"id" : "mail-producer",
+	"server" : "(tcp://192.168.1.11:61616,tcp://192.168.1.11:61617,tcp://192.168.1.11:61618)",
+	"user" : "admin",
+	"password" : "U6AKsqJNdUaRuFLBeeQv",
+	"maxConnection" : 1000,
+	"connectionTimeout" : 30000,
+	"expiryTimeout" : 0,
+	"createConnectionOnStartup" : true,
+	"idleTimeout" : 30000,
+	"prefetchSize" : 1,
+	"maximumActiveSessionPerConnection": 1,
+	"producers"  : [{
+		"name" : 	"user-email",
+		"poolSize" : 5
+	},{
+		"name" : 	"user-asset",
+		"poolSize" : 5
+	},{
+		"name" : 	"email-schedule",
+		"poolSize" : 5
+	}, {
+		"name" : 	"email-sender",
+		"poolSize" : 5
+	}]
+}
